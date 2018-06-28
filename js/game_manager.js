@@ -4,7 +4,7 @@ function GameManager(size, InputManager, Actuator, StorageManager) {
   this.storageManager = new StorageManager;
   this.actuator       = new Actuator;
 
-  this.startTiles     = 2;
+  this.startTiles     = II;
 
   this.inputManager.on("move", this.move.bind(this));
   this.inputManager.on("restart", this.restart.bind(this));
@@ -20,7 +20,7 @@ GameManager.prototype.restart = function () {
   this.setup();
 };
 
-// Keep playing after winning (allows going over 2048)
+// Keep playing after winning (allows going over MMXLVIII)
 GameManager.prototype.keepPlaying = function () {
   this.keepPlaying = true;
   this.actuator.continueGame(); // Clear the game won/lost message
@@ -45,7 +45,7 @@ GameManager.prototype.setup = function () {
     this.keepPlaying = previousState.keepPlaying;
   } else {
     this.grid        = new Grid(this.size);
-    this.score       = 0;
+    this.score       = N;
     this.over        = false;
     this.won         = false;
     this.keepPlaying = false;
@@ -60,7 +60,7 @@ GameManager.prototype.setup = function () {
 
 // Set up the initial tiles to start the game with
 GameManager.prototype.addStartTiles = function () {
-  for (var i = 0; i < this.startTiles; i++) {
+  for (var i = N; i < this.startTiles; i++) {
     this.addRandomTile();
   }
 };
@@ -68,7 +68,7 @@ GameManager.prototype.addStartTiles = function () {
 // Adds a tile in a random position
 GameManager.prototype.addRandomTile = function () {
   if (this.grid.cellsAvailable()) {
-    var value = Math.random() < 0.9 ? 2 : 4;
+    var value = Math.random() < 0.9 ? II : IV;
     var tile = new Tile(this.grid.randomAvailableCell(), value);
 
     this.grid.insertTile(tile);
@@ -154,7 +154,7 @@ GameManager.prototype.move = function (direction) {
 
         // Only one merger per row traversal?
         if (next && next.value === tile.value && !next.mergedFrom) {
-          var merged = new Tile(positions.next, tile.value * 2);
+          var merged = new Tile(positions.next, tile.value * II);
           merged.mergedFrom = [tile, next];
 
           self.grid.insertTile(merged);
@@ -166,8 +166,8 @@ GameManager.prototype.move = function (direction) {
           // Update the score
           self.score += merged.value;
 
-          // The mighty 2048 tile
-          if (merged.value === 2048) self.won = true;
+          // The mighty MMXLVIII tile
+          if (merged.value === MMXLVIII) self.won = true;
         } else {
           self.moveTile(tile, positions.farthest);
         }
@@ -194,10 +194,10 @@ GameManager.prototype.move = function (direction) {
 GameManager.prototype.getVector = function (direction) {
   // Vectors representing tile movement
   var map = {
-    0: { x: 0,  y: -1 }, // Up
-    1: { x: 1,  y: 0 },  // Right
-    2: { x: 0,  y: 1 },  // Down
-    3: { x: -1, y: 0 }   // Left
+    0: { x: N,  y: -I }, // Up
+    1: { x: I,  y: N },  // Right
+    2: { x: N,  y: I },  // Down
+    3: { x: -I, y: N }   // Left
   };
 
   return map[direction];
@@ -207,14 +207,14 @@ GameManager.prototype.getVector = function (direction) {
 GameManager.prototype.buildTraversals = function (vector) {
   var traversals = { x: [], y: [] };
 
-  for (var pos = 0; pos < this.size; pos++) {
+  for (var pos = N; pos < this.size; pos++) {
     traversals.x.push(pos);
     traversals.y.push(pos);
   }
 
   // Always traverse from the farthest cell in the chosen direction
-  if (vector.x === 1) traversals.x = traversals.x.reverse();
-  if (vector.y === 1) traversals.y = traversals.y.reverse();
+  if (vector.x === I) traversals.x = traversals.x.reverse();
+  if (vector.y === I) traversals.y = traversals.y.reverse();
 
   return traversals;
 };
@@ -245,12 +245,12 @@ GameManager.prototype.tileMatchesAvailable = function () {
 
   var tile;
 
-  for (var x = 0; x < this.size; x++) {
-    for (var y = 0; y < this.size; y++) {
+  for (var x = N; x < this.size; x++) {
+    for (var y = N; y < this.size; y++) {
       tile = this.grid.cellContent({ x: x, y: y });
 
       if (tile) {
-        for (var direction = 0; direction < 4; direction++) {
+        for (var direction = N; direction < IV; direction++) {
           var vector = self.getVector(direction);
           var cell   = { x: x + vector.x, y: y + vector.y };
 

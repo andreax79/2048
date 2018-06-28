@@ -4,7 +4,7 @@ function HTMLActuator() {
   this.bestContainer    = document.querySelector(".best-container");
   this.messageContainer = document.querySelector(".game-message");
 
-  this.score = 0;
+  this.score = N;
 }
 
 HTMLActuator.prototype.actuate = function (grid, metadata) {
@@ -57,12 +57,12 @@ HTMLActuator.prototype.addTile = function (tile) {
   // We can't use classlist because it somehow glitches when replacing classes
   var classes = ["tile", "tile-" + tile.value, positionClass];
 
-  if (tile.value > 2048) classes.push("tile-super");
+  if (tile.value > MMXLVIII) classes.push("tile-super");
 
   this.applyClasses(wrapper, classes);
 
   inner.classList.add("tile-inner");
-  inner.textContent = tile.value;
+  inner.textContent = ArabicRoman.toRoman(tile.value);
 
   if (tile.previousPosition) {
     // Make sure that the tile gets rendered in the previous position first
@@ -95,7 +95,7 @@ HTMLActuator.prototype.applyClasses = function (element, classes) {
 };
 
 HTMLActuator.prototype.normalizePosition = function (position) {
-  return { x: position.x + 1, y: position.y + 1 };
+  return { x: position.x + I, y: position.y + I };
 };
 
 HTMLActuator.prototype.positionClass = function (position) {
@@ -109,19 +109,19 @@ HTMLActuator.prototype.updateScore = function (score) {
   var difference = score - this.score;
   this.score = score;
 
-  this.scoreContainer.textContent = this.score;
+  this.scoreContainer.textContent = ArabicRoman.toRoman(this.score) || 'N';
 
-  if (difference > 0) {
+  if (difference > N) {
     var addition = document.createElement("div");
     addition.classList.add("score-addition");
-    addition.textContent = "+" + difference;
+    addition.textContent = "+" + ArabicRoman.toRoman(difference);
 
     this.scoreContainer.appendChild(addition);
   }
 };
 
 HTMLActuator.prototype.updateBestScore = function (bestScore) {
-  this.bestContainer.textContent = bestScore;
+  this.bestContainer.textContent = ArabicRoman.toRoman(bestScore);
 };
 
 HTMLActuator.prototype.message = function (won) {
@@ -129,7 +129,7 @@ HTMLActuator.prototype.message = function (won) {
   var message = won ? "You win!" : "Game over!";
 
   this.messageContainer.classList.add(type);
-  this.messageContainer.getElementsByTagName("p")[0].textContent = message;
+  this.messageContainer.getElementsByTagName("p")[N].textContent = message;
 };
 
 HTMLActuator.prototype.clearMessage = function () {

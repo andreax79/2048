@@ -31,7 +31,7 @@ LocalStorageManager.prototype.localStorageSupported = function () {
 
   try {
     var storage = window.localStorage;
-    storage.setItem(testKey, "1");
+    storage.setItem(testKey, "I");
     storage.removeItem(testKey);
     return true;
   } catch (error) {
@@ -41,7 +41,7 @@ LocalStorageManager.prototype.localStorageSupported = function () {
 
 // Best score getters/setters
 LocalStorageManager.prototype.getBestScore = function () {
-  return this.storage.getItem(this.bestScoreKey) || 0;
+  return this.storage.getItem(this.bestScoreKey) || N;
 };
 
 LocalStorageManager.prototype.setBestScore = function (score) {

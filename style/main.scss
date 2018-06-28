@@ -322,7 +322,7 @@ hr {
     font-weight: bold;
     z-index: 10;
 
-    font-size: 55px;
+    font-size: 25px;
   }
 
   // Movement transition
@@ -383,14 +383,14 @@ hr {
 
       // Adjust font size for bigger numbers
       @if $power >= 100 and $power < 1000 {
-        font-size: 45px;
+        font-size: 25px;
 
         // Media queries placed here to avoid carrying over the rest of the logic
         @include smaller($mobile-threshold) {
           font-size: 25px;
         }
       } @else if $power >= 1000 {
-        font-size: 35px;
+        font-size: 25px;
 
         @include smaller($mobile-threshold) {
           font-size: 15px;
