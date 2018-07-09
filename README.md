@@ -3,7 +3,10 @@ MMXLVIII is an Arabic-number-free version of 2048 (https://gabrielecirulli.githu
 
 The inspiration for MMXLVIII was:
 http://www.repubblica.it/cronaca/2018/06/26/news/_introduciamo_i_numeri_arabi_nelle_scuole_e_in_tantissimi_credono_alla_bufala-200097351/?ref=search
+
 (in english: https://translate.google.com/translate?sl=auto&tl=en&js=y&prev=_t&hl=en&ie=UTF-8&u=http%3A%2F%2Fwww.repubblica.it%2Fcronaca%2F2018%2F06%2F26%2Fnews%2F_introduciamo_i_numeri_arabi_nelle_scuole_e_in_tantissimi_credono_alla_bufala-200097351%2F%3Fref%3Dsearch&edit-text=)
+
+Play https://andreax79.github.io/MMXLVIII/
 
 ### Screenshot
 
