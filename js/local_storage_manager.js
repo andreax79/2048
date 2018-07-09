@@ -21,7 +21,6 @@ window.fakeStorage = {
 function LocalStorageManager() {
   this.bestScoreKey     = "bestScore";
   this.gameStateKey     = "gameState";
-  this.noticeClosedKey  = "noticeClosed";
 
   var supported = this.localStorageSupported();
   this.storage = supported ? window.localStorage : window.fakeStorage;
@@ -29,10 +28,10 @@ function LocalStorageManager() {
 
 LocalStorageManager.prototype.localStorageSupported = function () {
   var testKey = "test";
-  var storage = window.localStorage;
 
   try {
-    storage.setItem(testKey, "1");
+    var storage = window.localStorage;
+    storage.setItem(testKey, "I");
     storage.removeItem(testKey);
     return true;
   } catch (error) {
@@ -42,7 +41,7 @@ LocalStorageManager.prototype.localStorageSupported = function () {
 
 // Best score getters/setters
 LocalStorageManager.prototype.getBestScore = function () {
-  return this.storage.getItem(this.bestScoreKey) || 0;
+  return this.storage.getItem(this.bestScoreKey) || N;
 };
 
 LocalStorageManager.prototype.setBestScore = function (score) {
@@ -61,12 +60,4 @@ LocalStorageManager.prototype.setGameState = function (gameState) {
 
 LocalStorageManager.prototype.clearGameState = function () {
   this.storage.removeItem(this.gameStateKey);
-};
-
-LocalStorageManager.prototype.setNoticeClosed = function (noticeClosed) {
-  this.storage.setItem(this.noticeClosedKey, JSON.stringify(noticeClosed));
-};
-
-LocalStorageManager.prototype.getNoticeClosed = function () {
-  return JSON.parse(this.storage.getItem(this.noticeClosedKey) || "false");
 };

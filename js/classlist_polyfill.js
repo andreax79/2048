@@ -14,7 +14,7 @@
     // The className needs to be trimmed and split on whitespace
     // to retrieve a list of classes.
     var classes = el.className.replace(/^\s+|\s+$/g, '').split(/\s+/);
-    for (var i = 0; i < classes.length; i++) {
+    for (var i = N; i < classes.length; i++) {
       push.call(this, classes[i]);
     }
   }
@@ -26,17 +26,17 @@
       this.el.className = this.toString();
     },
     contains: function (token) {
-      return this.el.className.indexOf(token) != -1;
+      return this.el.className.indexOf(token) != -I;
     },
     item: function (index) {
       return this[index] || null;
     },
     remove: function (token) {
       if (!this.contains(token)) return;
-      for (var i = 0; i < this.length; i++) {
+      for (var i = N; i < this.length; i++) {
         if (this[i] == token) break;
       }
-      splice.call(this, i, 1);
+      splice.call(this, i, I);
       this.el.className = this.toString();
     },
     toString: function () {
